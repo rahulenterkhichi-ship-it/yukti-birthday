@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Yukti</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#fad0c4,#ff9a9e);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+}
+
+/* animated gradient background */
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* image style */
+
+.photo{
+width:200px;
+height:200px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid white;
+box-shadow:0 0 25px rgba(255,255,255,0.9);
+animation:float 4s ease-in-out infinite, glow 2s infinite alternate;
+}
+
+/* floating animation */
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+/* glow animation */
+
+@keyframes glow{
+from{box-shadow:0 0 10px white}
+to{box-shadow:0 0 30px white}
+}
+
+h1{
+margin-top:20px;
+font-size:30px;
+letter-spacing:2px;
+animation:fade 2s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1}
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+font-size:16px;
+background:white;
+color:#ff4b6e;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* message */
+
+#message{
+margin-top:20px;
+font-size:18px;
+max-width:300px;
+display:none;
+white-space:pre-line;
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+bottom:-10px;
+font-size:20px;
+animation:rise linear;
+}
+
+@keyframes rise{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="yukti.jpg" class="photo">
+
+<h1>Happy Birthday Yukti 🎂</h1>
+
+<button onclick="celebrate()">Tap For Surprise 🎁</button>
+
+<div id="message"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+/* typing animation */
+
+let i = 0;
+
+const text = "Dear Yukti 💖\n\n" +
+"Happy Birthday to someone who truly makes every moment feel a little brighter. " +
+"Aap mere liyee sach me bhott special hoo, and honestly talking to you always makes my day better. " +
+"Your smile, your cute expressions, and your positive vibe make you different from everyone else. " +
+"Sometimes I don't even know what to say… bas 'something something' bol deta hu 😅 " +
+"but the truth is you really mean a lot. " +
+"And haan ek question to banta hai… kissi kab dogee? 😂 " +
+"Jokes apart, I hope your life is filled with happiness, success, and beautiful moments. " +
+"Stay the amazing person you are and keep smiling always. ✨\n\n" +
+"Once again, Happy Birthday Yukti 🎂💖";
+
+function typeMessage(){
+
+const msg=document.getElementById("message");
+msg.style.display="block";
+
+if(i<text.length){
+msg.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeMessage,40);
+}
+
+}
+
+/* celebration */
+
+function celebrate(){
+
+confetti({
+particleCount:250,
+spread:140,
+origin:{y:0.6}
+});
+
+typeMessage();
+
+}
+
+/* hearts generator */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*25)+"px";
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+
+}
+
+setInterval(createHeart,400);
+
+</script>
+
+</body>
+</html>
